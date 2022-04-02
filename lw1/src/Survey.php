@@ -1,7 +1,10 @@
 <?php
 class Survey
 {
-    private ?string $email, $first_name, $last_name, $age;
+    private ?string $email;
+    private ?string $first_name;
+    private ?string $last_name;
+    private ?string $age;
 
     public function __construct(?string $email, ?string $first_name, ?string $last_name, ?string $age)
     {

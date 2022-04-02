@@ -1,19 +1,25 @@
 <?php
 class SurveyFileStorage
 {
-    private const DIR_NAME = './data/';
-    private const SEPARATOR = ':';
+    private string $dirName;
+    private string $separator;
+
+    public function __construct(string $dirName = './data/', string $separator = ':')
+    {
+        $this->dirName = $dirName;
+        $this->separator = $separator;
+    }
 
     public function load(string $email): ?Survey
     {
-        $fileName = $this->createFileName($email);
+        $fileName = $this->getFullPath($email);
         if (file_exists($fileName))
         {
             $lines = file($fileName);
             $surveyData = [];
             foreach ($lines as $line)
             {
-                $value = explode(self::SEPARATOR, $line, 2);
+                $value = explode($this->separator, $line);
                 $surveyData[$value[0]] = trim($value[1]);
             }
 
@@ -35,22 +41,22 @@ class SurveyFileStorage
             $this->createLine('Last Name', $survey->getLastName()) .
             $this->createLine('Age', $survey->getAge());
 
-        if (!file_exists(self::DIR_NAME) && !mkdir($concurrentDirectory = self::DIR_NAME) && !is_dir($concurrentDirectory))
+        if (!file_exists($this->dirName) && !mkdir($concurrentDirectory = $this->dirName) && !is_dir($concurrentDirectory))
         {
             throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
-        $fileName = $this->createFileName($survey->getEmail());
+        $fileName = $this->getFullPath($survey->getEmail());
 
         return file_put_contents($fileName, $data) !== false;
     }
 
     private function createLine(string $key, ?string $value): string
     {
-        return $key . self::SEPARATOR . ' ' . $value . PHP_EOL;
+        return $key . $this->separator . ' ' . $value . PHP_EOL;
     }
 
-    private function createFileName(string $email): string
+    private function getFullPath(string $email): string
     {
-        return self::DIR_NAME . $email . '.txt';
+        return $this->dirName . $email . '.txt';
     }
 }

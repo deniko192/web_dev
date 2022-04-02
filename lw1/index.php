@@ -2,11 +2,11 @@
 header('Content-Type: text/plain');
 require_once('src/common.inc.php');
 
-$surveyLoader = new RequestSurveyLoader();
+$surveyLoader = new RequestSurveyLoader(['email', 'first_name', 'last_name', 'age']);
 $surveyFileManager = new SurveyFileStorage();
 $surveyPrinter = new SurveyPrinter();
 
-$survey = $surveyLoader->createSurvey();
+$survey = $surveyLoader->getSurvey();
 $surveyEmail = $survey->getEmail();
 
 echo('INPUT' . PHP_EOL);
