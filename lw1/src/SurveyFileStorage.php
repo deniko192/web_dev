@@ -35,7 +35,12 @@ class SurveyFileStorage
             $this->createLine('Last Name', $survey->getLastName()) .
             $this->createLine('Age', $survey->getAge());
 
+        if (!file_exists(self::DIR_NAME) && !mkdir($concurrentDirectory = self::DIR_NAME) && !is_dir($concurrentDirectory))
+        {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
         $fileName = $this->createFileName($survey->getEmail());
+
         return file_put_contents($fileName, $data) !== false;
     }
 

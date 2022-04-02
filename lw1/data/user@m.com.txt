@@ -1,4 +1,0 @@
-Email: user@m.com
-First Name: deniko
-Last Name: 
-Age: 12
