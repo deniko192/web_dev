@@ -11,9 +11,10 @@ class RequestSurveyLoader
         }
     }
 
-    public function getSurvey(): Survey
+    public function getSurvey(): ?Survey
     {
-        return new Survey($this->surveyData['email'], $this->surveyData['first_name'], $this->surveyData['last_name'], $this->surveyData['age']);
+        return $this->surveyData['email']
+            ?? new Survey($this->surveyData['email'], $this->surveyData['first_name'], $this->surveyData['last_name'], $this->surveyData['age']);
     }
     
     private function getGetParameter(string $param): ?string
