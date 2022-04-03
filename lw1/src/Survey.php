@@ -1,12 +1,12 @@
 <?php
 class Survey
 {
-    private ?string $email;
+    private string $email;
     private ?string $first_name;
     private ?string $last_name;
     private ?string $age;
 
-    public function __construct(?string $email, ?string $first_name, ?string $last_name, ?string $age)
+    public function __construct(string $email, ?string $first_name, ?string $last_name, ?string $age)
     {
         $this->email = $email;
         $this->first_name = $first_name;
@@ -14,7 +14,7 @@ class Survey
         $this->age = $age;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
