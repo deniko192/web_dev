@@ -2,7 +2,7 @@
 header('Content-Type: text/plain');
 require_once('src/common.inc.php');
 
-$surveyLoader = new RequestSurveyLoader(['email', 'first_name', 'last_name', 'age']);
+$surveyLoader = new RequestSurveyLoader($_GET);
 $surveyFileManager = new SurveyFileStorage();
 $surveyPrinter = new SurveyPrinter();
 

@@ -1,26 +1,30 @@
 <?php
 class RequestSurveyLoader
 {
-    private array $surveyData;
+    private array $request;
 
-    public function  __construct(array $params)
+    public function  __construct(array $request)
     {
-        foreach ($params as $param)
-        {
-            $this->surveyData[$param] = $this->getGetParameter($param); 
-        }
+        $this->request = $request;
     }
 
     public function getSurvey(): ?Survey
     {
-        return $this->surveyData['email']
-            ?? new Survey($this->surveyData['email'], $this->surveyData['first_name'], $this->surveyData['last_name'], $this->surveyData['age']);
+        $email = $this->getGetParameter('email');
+        return $email === null
+        ? null
+        : new Survey(
+            $email,
+            $this->getGetParameter('first_name'),
+            $this->getGetParameter('last_name'),
+            $this->getGetParameter('age')
+        );
     }
     
     private function getGetParameter(string $param): ?string
     {
-        return isset($_GET[$param]) && !empty($_GET[$param])
-            ? $_GET[$param]
+        return isset($this->request[$param]) && !empty($this->request[$param])
+            ? $this->request[$param]
             : null;
     }   
 }
