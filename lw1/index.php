@@ -7,14 +7,12 @@ $surveyFileManager = new SurveyFileStorage();
 $surveyPrinter = new SurveyPrinter();
 
 $survey = $surveyLoader->getSurvey();
-$surveyEmail = $survey->getEmail();
 
-echo('INPUT' . PHP_EOL);
-$surveyPrinter->print($survey);
-
-if ($surveyEmail !== null)
+if ($survey !== null)
 {
-    $oldSurvey = $surveyFileManager->load($surveyEmail);
+    echo('INPUT' . PHP_EOL);
+    $surveyPrinter->print($survey);
+    $oldSurvey = $surveyFileManager->load($survey->getEmail());
 
     if ($oldSurvey !== null)
     {
