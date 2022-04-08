@@ -1,4 +1,6 @@
 <?php
+namespace App\Modules;
+
 class RequestSurveyLoader
 {
     private array $request;

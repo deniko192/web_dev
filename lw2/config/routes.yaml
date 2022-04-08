@@ -1,8 +1,9 @@
-controllers:
-    resource: ../src/Controller/
-    type: annotation
+app_save_survey:
+    path: /save_survey
+    controller: App\Controller\SaveSurveyController::save
+    methods: GET
 
-kernel:
-    resource: ../src/Kernel.php
-    type: annotation
-
+app_get_survey:
+    path: /get_survey
+    controller: App\Controller\GetSurveyController::get
+    methods: GET

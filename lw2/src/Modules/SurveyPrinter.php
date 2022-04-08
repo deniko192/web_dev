@@ -1,4 +1,6 @@
 <?php
+namespace App\Modules;
+
 class SurveyPrinter
 {
     public function print(Survey $survey): void

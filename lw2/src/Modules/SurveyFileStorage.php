@@ -1,4 +1,6 @@
 <?php
+namespace App\Modules;
+
 class SurveyFileStorage
 {
     private string $dirName;
@@ -46,7 +48,6 @@ class SurveyFileStorage
             throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
         }
         $fileName = $this->getFullPath($survey->getEmail());
-
         return file_put_contents($fileName, $data) !== false;
     }
 

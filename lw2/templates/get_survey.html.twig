@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Save Survey</title>
+</head>
+<body>
+    {% if survey == null %}
+        <p>Данные не найдены</p>
+    {% else %}
+        <p>Email: {{ survey.email }}</p>
+        <p>First Name: {{ survey.firstName }}</p>
+        <p>Last Name: {{ survey.lastName }}</p>
+        <p>Age: {{ survey.age }}</p>
+    {% endif %}
+</body>
+</html>
