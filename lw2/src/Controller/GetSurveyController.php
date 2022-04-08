@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Modules\RequestSurveyLoader;
-use App\Modules\SurveyFileStorage;
+use App\Module\Survey\RequestSurveyLoader;
+use App\Module\Survey\SurveyFileStorage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 

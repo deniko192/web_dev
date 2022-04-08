@@ -1,5 +1,7 @@
 <?php
-namespace App\Modules;
+namespace App\Module\Survey;
+
+use App\Module\RuntimeException;
 
 class SurveyFileStorage
 {

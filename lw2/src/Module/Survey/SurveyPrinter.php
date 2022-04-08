@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules;
+namespace App\Module\Survey;
 
 class SurveyPrinter
 {
