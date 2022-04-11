@@ -1,9 +1,9 @@
 app_save_survey:
     path: /save_survey
-    controller: App\Controller\SaveSurveyController::save
+    controller: App\Controller\SurveyController::saveSurvey
     methods: GET
 
 app_get_survey:
     path: /get_survey
-    controller: App\Controller\GetSurveyController::get
+    controller: App\Controller\SurveyController::getSurvey
     methods: GET

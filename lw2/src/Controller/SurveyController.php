@@ -6,9 +6,19 @@ use App\Module\Survey\SurveyFileStorage;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class SaveSurveyController extends AbstractController
+class SurveyController extends AbstractController
 {
-    public function save(): Response
+    public function getSurvey(): Response
+    {
+        $surveyLoader = new RequestSurveyLoader($_GET);
+        $surveyFileStorage = new SurveyFileStorage('../src/data/');
+        $survey = $surveyLoader->getSurvey();
+        return $this->render(
+            'get_survey.html.twig',
+            ['survey' => $survey === null ? $survey : $surveyFileStorage->load($survey->getEmail())]);
+    }
+
+    public function saveSurvey(): Response
     {
         $surveyLoader = new RequestSurveyLoader($_GET);
         $surveyFileStorage = new SurveyFileStorage('../src/data/');
@@ -23,8 +33,3 @@ class SaveSurveyController extends AbstractController
             ['message' => $fileSaved ? 'Данные сохранены' : 'Ошибка при сохранении файла']);
     }
 }
-
-
-
-
-
