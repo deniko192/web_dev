@@ -3,12 +3,12 @@ namespace App\Module\Survey;
 
 use App\Module\RuntimeException;
 
-class SurveyFileStorage
+class SurveyFileStorage implements SurveyFileStorageInterface
 {
     private string $dirName;
     private string $separator;
 
-    public function __construct(string $dirName = './data/', string $separator = ':')
+    public function __construct(string $dirName = '../src/data/', string $separator = ':')
     {
         $this->dirName = $dirName;
         $this->separator = $separator;

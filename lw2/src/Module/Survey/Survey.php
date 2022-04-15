@@ -1,7 +1,7 @@
 <?php
 namespace App\Module\Survey;
 
-class Survey
+class Survey implements SurveyInterface
 {
     private string $email;
     private ?string $first_name;

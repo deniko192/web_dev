@@ -3,33 +3,26 @@ namespace App\Controller;
 
 use App\Module\Survey\RequestSurveyLoader;
 use App\Module\Survey\SurveyFileStorage;
+use App\Service\SurveyManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 class SurveyController extends AbstractController
 {
+    private SurveyManagerInterface $surveyManager;
+
+    public function __construct(SurveyManagerInterface $surveyManager)
+    {
+        $this->surveyManager = $surveyManager;
+    }
+
     public function getSurvey(): Response
     {
-        $surveyLoader = new RequestSurveyLoader($_GET);
-        $surveyFileStorage = new SurveyFileStorage('../src/data/');
-        $survey = $surveyLoader->getSurvey();
-        return $this->render(
-            'get_survey.html.twig',
-            ['survey' => $survey === null ? $survey : $surveyFileStorage->load($survey->getEmail())]);
+        return $this->render('get_survey.html.twig', ['survey' => $this->surveyManager->getSurvey()]);
     }
 
     public function saveSurvey(): Response
     {
-        $surveyLoader = new RequestSurveyLoader($_GET);
-        $surveyFileStorage = new SurveyFileStorage('../src/data/');
-        $survey = $surveyLoader->getSurvey();
-        if ($survey === null)
-        {
-            return $this->render('save_survey.html.twig', ['message' => 'Пустое значение email']);
-        }
-        $fileSaved = $surveyFileStorage->save($survey);
-        return $this->render(
-            'save_survey.html.twig',
-            ['message' => $fileSaved ? 'Данные сохранены' : 'Ошибка при сохранении файла']);
+        return $this->render('save_survey.html.twig', ['message' => $this->surveyManager->saveSurvey()]);
     }
 }

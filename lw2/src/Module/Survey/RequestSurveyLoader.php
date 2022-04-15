@@ -1,13 +1,13 @@
 <?php
 namespace App\Module\Survey;
 
-class RequestSurveyLoader
+class RequestSurveyLoader implements RequestSurveyLoaderInterface
 {
     private array $request;
 
-    public function  __construct(array $request)
+    public function  __construct(array $request = null)
     {
-        $this->request = $request;
+        $this->request = $request ?? $_GET;
     }
 
     public function getSurvey(): ?Survey
