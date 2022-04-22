@@ -29,7 +29,7 @@ class SurveyManager implements SurveyManagerInterface
         $survey = $this->surveyLoader->getSurvey();
         if (!$survey)
         {
-            return 'Пустое значение email';
+            throw new Exception('Пустое значение email');
         }
         return $this->surveyFileStorage->save($survey)
             ? 'Данные сохранены'
