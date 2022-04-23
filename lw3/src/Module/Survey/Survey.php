@@ -3,18 +3,10 @@ namespace App\Module\Survey;
 
 class Survey
 {
-    private string $email;
-    private ?string $first_name;
-    private ?string $last_name;
+    private ?string $email;
+    private ?string $firstName;
+    private ?string $lastName;
     private ?string $age;
-
-    public function __construct(string $email, ?string $first_name, ?string $last_name, ?string $age)
-    {
-        $this->email = $email;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->age = $age;
-    }
 
     public function getEmail(): string
     {
@@ -23,12 +15,12 @@ class Survey
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     public function getAge(): ?string
@@ -38,12 +30,12 @@ class Survey
 
     public function setFirstName(string $first_name): void
     {
-        $this->first_name = $first_name;
+        $this->firstName = $first_name;
     }
 
     public function setLastName(string $last_name): void
     {
-        $this->last_name = $last_name;
+        $this->lastName = $last_name;
     }
 
     public function setAge(string $age): void

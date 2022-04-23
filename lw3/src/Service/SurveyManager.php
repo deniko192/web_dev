@@ -10,7 +10,7 @@ class SurveyManager implements SurveyManagerInterface
     private RequestSurveyLoader $surveyLoader;
     private SurveyFileStorage $surveyFileStorage;
 
-    public function __construct(string $imageStorageDir, string $surveyStorageDir)
+    public function __construct()
     {
         $this->surveyLoader = new RequestSurveyLoader();
         $this->surveyFileStorage = new SurveyFileStorage();
@@ -26,13 +26,6 @@ class SurveyManager implements SurveyManagerInterface
 
     public function saveSurvey(): string
     {
-        $survey = $this->surveyLoader->getSurvey();
-        if (!$survey)
-        {
-            throw new Exception('Пустое значение email');
-        }
-        return $this->surveyFileStorage->save($survey)
-            ? 'Данные сохранены'
-            : 'Ошибка при сохранении файла';
+        return '';
     }
 }

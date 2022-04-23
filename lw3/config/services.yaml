@@ -19,8 +19,8 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    App\Service\SurveyManager:
-        tags: [controller.service_arguments]
-        bind:
-            $data: 'data'
+#    App\Service\SurveyManager:
+#        tags: [controller.service_arguments]
+#        bind:
+#            $data: 'data'
 
